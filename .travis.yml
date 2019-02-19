@@ -1,0 +1,16 @@
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends latexmk
+  texlive-fonts-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra
+  texlive-latex-recommended texlive-pictures texlive-science
+script:
+- mkdir _build
+- latexmk -pdf -outdir=_build AllegThesis.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: MsuZ+uUCUwC87YTzDBOZh9hySP1mmd0LwW/LNanZ/tTklsKZYuzYcNtDzAyeY04YPhR/1TVHKqxjmsoco8hCkQc0fmpoWoI17IviWeraEqRcPzLhhUQ31DiSdshXqdr3ZvBS3i5lRh0ZKu3ytflqM8x8fQ97rWQPOft8aVPYGLYTzvzSlBRMsSnNL7Te9p0ZS5ebctP02tz6P0LxV10gheajS+v8703DTwQCri+lT/LS0BSdA8eW1M6juUBJjISMD9yUGFGM++SnrrzavDJTDi0kNtwszuQdOAjttQds69fGwuJbnDeGs0SuSpYoNA303hYZwW8Bux2P/AH/LqNYGXUJDtsNwR0JkUVVCUZFSr1SPQzzxqwK/9dDwYDRHyYgKGkhyp7hSGv/Nba5+Koao+uFf8o4FQ92lVQxypAPMGDPiWcFiry4psRxNVPO0UAU+0H6NlXSmp+vjCtJE+3BwxRd1e049FpsAlSqg4MV03V7WqemAGfZX7xMcfkaP/QQK3nwbvf8Ar7iNAcn9JU6q5tuEbAJL15iLyiE4NJZaBBXyvAT8LJDKw5kEjj2BVg0f6CSV4RtVesuivk+7vgExbjflPARXYi0WyF6c2dZWchOc8gm3dVBW2LTT1rp/GgIXUuypDp4e7Yx8Ih3to2qd0gbivcD93UmrNKU+jaHVLk=
+  file: _build/AllegThesis.pdf
+skip_cleanup: true
+on:
+  tags: true
+
